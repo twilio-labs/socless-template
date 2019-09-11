@@ -1,0 +1,39 @@
+service: socless-integrations-template
+
+provider:
+  name: aws
+  runtime: python3.7
+  variableSyntax: "\\${{([ ~:a-zA-Z0-9._\\'\",\\-\\/\\(\\)]+?)}}"
+  stage: ${{opt:stage}}
+  region: ${{opt:region}}
+  versionFunctions: false
+  memorySize: 128
+  timeout: 10
+  role: ${{cf:${{self:custom.socless}}.LambdaExecutionRoleArn}}
+  environment:
+    SOCLESS_VAULT: ${{cf:${{self:custom.socless}}.SoclessVault}}
+    SOCLESS_RESULTS_TABLE: ${{cf:${{self:custom.socless}}.ExecutionResultsTable}}
+    MESSAGE_RESPONSES_TABLE: ${{cf:${{self:custom.socless}}.MessageResponsesTable}}
+    SOCLESS_DEDUP_TABLE: ${{cf:${{self:custom.socless}}.DedupTable}}
+    SOCLESS_EVENTS_TABLE: ${{cf:${{self:custom.socless}}.EventsTable}}
+  vpc:
+    securityGroupIds:
+      - ${{cf:${{self:custom.socless}}.LambdaVpcSG}}
+    subnetIds:
+      - ${{cf:${{self:custom.socless}}.PrivateFunctionSubnet}}
+  apiGateway:
+    restApiId: ${{cf:${{self:custom.socless}}.APIGatewayID}}
+    restApiRootResourceId: ${{cf:${{self:custom.socless}}.APIGatewayRootResourceId}}
+
+plugins:
+  - serverless-package-python-functions
+
+package:
+  individually: true
+
+custom:
+  socless: socless-${{self:provider.stage}}
+  pkgPyFuncs:
+    buildDir: build
+    globalRequirements:
+      - functions/requirements.txt

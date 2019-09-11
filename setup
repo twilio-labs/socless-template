@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Setting up serverless.yml"
+sed -i.bak "s/service: socless-integrations-template/service: ${PWD##*/}/" serverless.yml
+rm -f serverless.yml.bak
+echo "Cleaning up origin artifacts"
+rm -rf .git
+rm README.md
+npm init --yes
+npm install
+git init
+rm setup
