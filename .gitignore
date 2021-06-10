@@ -24,10 +24,11 @@ node_modules
 
 # Secrets
 secrets.yml
-secrets.*.yml
 
-# Mac OS Files
-.DS_Store
-
-# Virtual env
+# Venv
 venv
+.DS_Store
+.tox
+.coverage
+*.pyc
+package-lock.json
