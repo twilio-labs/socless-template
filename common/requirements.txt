@@ -1,0 +1,7 @@
+# Because this requirements.txt file is located in ./common, all code and dependencies listed here will 
+#   automatically be included in packaging for all lambda functions in ./functions.
+#
+# You can also specify dependencies for a single lambda function by including another requirements.txt 
+#   in that lambda's directory: ./functions/<my_function>/requirements.txt
+
+https://github.com/twilio-labs/socless_python/releases/download/1.6.0/socless-1.5.0.tar.gz

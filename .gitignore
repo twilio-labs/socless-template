@@ -32,3 +32,5 @@ venv
 .coverage
 *.pyc
 package-lock.json
+
+.archives
