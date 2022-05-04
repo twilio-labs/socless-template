@@ -3,7 +3,7 @@ unresolvedVariablesNotificationMode: error
 
 provider:
   name: aws
-  runtime: python3.7
+  runtime: python3.9
   variableSyntax: "\\${{([ ~:a-zA-Z0-9._\\'\",\\-\\/\\(\\)]+?)}}"
   stage: ${{opt:stage}}
   region: ${{opt:region}}
@@ -57,8 +57,10 @@ functions:
     name: socless_template_send_old_timey_telegram
     description: Socless integration to send a telegram
     package:
-      # The function_name is also the name used as a directory in the ./functions folder 
-      artifact: .archives/send_old_timey_telegram
+      # The function_name is also the name used as a directory in the ./functions folder
+      #    the socless packager is automatically invoked via NPM before deployment, and
+      #    will create the archive zip at this location
+      artifact: .archives/functions/send_old_timey_telegram.zip
 
 resources:
   Resources:
