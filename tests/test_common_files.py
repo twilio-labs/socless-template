@@ -1,10 +1,13 @@
 import pytest
 
 # two ways to import from common_files folder
-import template_helpers
+import common.template_helpers
 
 # other way to import multiple items from a file (do not do `from x import *`)
-from template_helpers import example_function_with_default_args, SoclessTemplateError
+from common.template_helpers import (
+    example_function_with_default_args,
+    SoclessTemplateError,
+)
 
 # All tests must start with the word `test`
 # All test names must be unique
@@ -14,7 +17,7 @@ from template_helpers import example_function_with_default_args, SoclessTemplate
 
 def test_assert_a_function_intended_to_fail():
     with pytest.raises(SoclessTemplateError):
-        template_helpers.example_function_that_fails("My Failure Message")
+        common.template_helpers.example_function_that_fails("My Failure Message")
 
 
 def test_function_with_default_args_not_populated():
