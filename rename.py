@@ -100,7 +100,7 @@ for f_path in filtered_files:
 # rename paths
 paths_to_rename = [
     f".{sep}playbooks{sep}socless_template_integration_test",
-    f".{sep}common_files{sep}template_helpers.py",
+    f".{sep}common{sep}template_helpers.py",
 ]
 
 for full_path in paths_to_rename:

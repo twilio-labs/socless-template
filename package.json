@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": ". venv/bin/activate && tox",
+    "rename": "python3 rename.py",
     "pretest": "python3 -m venv venv && . venv/bin/activate && pip3 install tox -qq",
     "posttest": "find . | grep -E '(__pycache__|.pytest_cache|.egg-info)' | xargs rm -rf",
     "build-funcs": "node node_modules/lambda-packager/build/src/main.js functions -c common -o .archives/functions -u 'no-linux'",
